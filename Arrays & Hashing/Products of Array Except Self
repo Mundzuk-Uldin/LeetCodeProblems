@@ -1,0 +1,16 @@
+from ast import List
+
+
+class Solution:
+    def productExceptSelf(self, nums: List[int]) -> List[int]:
+        prefix = [1]
+        postfix = [1]
+        ans = []
+        
+        for i,n in enumerate(nums):
+            prefix.append(prefix[i]*n)
+        for i,n in enumerate(nums[::-1]):
+            postfix.insert(-i-1, postfix[-i-1]*n)
+        for i, n in enumerate(nums):
+            ans.append(prefix[i]*postfix[i+1])
+        return ans
