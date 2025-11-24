@@ -7,6 +7,7 @@ class Solution:
         memo = {}
         for i in range(len(nums)):
             length = self.nextNumInSequence(nums, nums[i], 0, memo)
+            
             if(length > longest_length):
                 longest_length = length
                 
@@ -17,5 +18,5 @@ class Solution:
             return length
         if n in memo:
             return memo[n]
-        memo[n] = self.nextNumInSequence(nums,n+1,length, memo)
+        memo[n] = self.nextNumInSequence(nums,n+1,length, memo)+1
         return memo[n]
