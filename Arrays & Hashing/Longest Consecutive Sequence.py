@@ -3,20 +3,16 @@ from typing import List
 
 class Solution:
     def longestConsecutive(self, nums: List[int]) -> int:
-        longest_length = 0
-        memo = {}
-        for i in range(len(nums)):
-            length = self.nextNumInSequence(nums, nums[i], 0, memo)
-            
-            if(length > longest_length):
-                longest_length = length
-                
-        return longest_length
-        
-    def nextNumInSequence(self, nums: List[int], n:int , length: int, memo:dict)-> int:
-        if n not in nums:
-            return length
-        if n in memo:
-            return memo[n]
-        memo[n] = self.nextNumInSequence(nums,n+1,length, memo)+1
-        return memo[n]
+        set_nums = set(nums)
+        largest_sequence = 0
+        for n in set_nums:
+            large_list = []
+            sequence_num = n
+            if n-1 not in set_nums:
+                while(sequence_num+1 in set_nums):
+                    large_list.append(sequence_num)
+                    sequence_num += 1
+                large_list.append(sequence_num)
+            if(largest_sequence < len(large_list)):
+                largest_sequence = len(large_list)
+        return largest_sequence
