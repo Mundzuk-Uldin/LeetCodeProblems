@@ -10,3 +10,4 @@ class Solution:
                 students.append(students.pop(0))
                 counter -= 1
         return len(students)
+
